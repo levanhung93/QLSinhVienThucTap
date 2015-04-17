@@ -71,19 +71,29 @@ namespace QuanLySinhVien.GUI
 
         private void OnBtnLuuSVClick(object sender, EventArgs e)
         {
-            svAttribute.MaSV = _cboMaSinhVien.Text;
-            svAttribute.TenSV = _txtTenSinhVien.Text;
-            svAttribute.NgaySinh = Int32.Parse(_txtNgaySinhSV.Text);
-            svAttribute.ThangSinh = Int32.Parse(_txtThangSinhSV.Text);
-            svAttribute.NamSinh = Int32.Parse(_txtNamSinhSV.Text);
-            svAttribute.GioiTinh = _txtGioiTinhSV.Text;
-            svAttribute.Lop = _cbLop.SelectedValue.ToString();
-            svAttribute.DiaChi = _txtDiachiSV.Text;
-            svAttribute.DienThoai = _txtDienThoaiSV.Text;
-            svAttribute.Email = _txtEmailSV.Text;
-            svController.InsertSinhVien(svAttribute);
-            svController.InsertTaiKhoan(svAttribute);
-            OnSinhVienThucTapLoad(sender, e);
+            try
+            {
+                svAttribute.MaSV = _cboMaSinhVien.Text;
+                svAttribute.TenSV = _txtTenSinhVien.Text;
+                svAttribute.NgaySinh = Int32.Parse(_txtNgaySinhSV.Text);
+                svAttribute.ThangSinh = Int32.Parse(_txtThangSinhSV.Text);
+                svAttribute.NamSinh = Int32.Parse(_txtNamSinhSV.Text);
+                svAttribute.GioiTinh = _txtGioiTinhSV.Text;
+                svAttribute.Lop = _cbLop.SelectedValue.ToString();
+                svAttribute.DiaChi = _txtDiachiSV.Text;
+                svAttribute.DienThoai = _txtDienThoaiSV.Text;
+                svAttribute.Email = _txtEmailSV.Text;
+                svController.InsertSinhVien(svAttribute);
+                svController.InsertTaiKhoan(svAttribute);
+                OnSinhVienThucTapLoad(sender, e);
+            }
+            catch (Exception ex)
+            {
+
+                MessageDialog messageDialog = new MessageDialog(@"Error: " +ex, MessageDialog.DialogType.Ok);
+                messageDialog.ShowDialog();
+            }
+           
         }
         private void _btnXoaSV_Click(object sender, EventArgs e)
         {
